@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# holo-fi
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Credits
+
+🎵Music
+
+- [hololive music studio - lo-fi & chill mix II [#hololivemusicstudio]](https://www.youtube.com/watch?v=cBlrARl9tIQ&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv)
+- [hololive music studio - ambient & orgel mix [#hololivemusicstudio]](https://www.youtube.com/watch?v=899x5rU9mX8&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=2)
+- [hololive music studio - jazz mix](https://www.youtube.com/watch?v=WFWw821wozI&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=3)
+- [hololive music studio - bossa nova & jazz mix](https://www.youtube.com/watch?v=VPBqpyub4Kc&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=4)
+- [hololive music studio - lo-fi & chill mix](https://www.youtube.com/watch?v=XD1t7JHbge0&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=5)
+
+🎵SFX
+
+All sound effects are from [ZapSplat](https://www.zapsplat.com/). Thank you!
+
+- [A long recording of thunder rumbles and strikes, no rain](https://www.zapsplat.com/music/a-long-recording-of-thunder-rumbles-and-strikes-no-rain/)
+- [Constant heavy rain on forest trees and foliage](https://www.zapsplat.com/music/constant-heavy-rain-on-forest-trees-and-foliage/)
+- [Heavy rain](https://www.zapsplat.com/music/heavy-rain/)
+- [Light consistent rain in forest](https://www.zapsplat.com/music/light-consistent-rain-in-forest/)
+- [Airport ambience – small terminal building with check-in and cafe close-by – La Rochelle airport 3](https://www.zapsplat.com/music/airport-ambience-small-terminal-building-with-check-in-and-cafe-close-by-la-rochelle-airport-3/)
+- [Constant small ocean waves break onto shore 1](https://www.zapsplat.com/music/constant-small-ocean-waves-break-onto-shore-1/)
+- [Beach stream, water running through stones](https://www.zapsplat.com/music/beach-stream-water-running-through-stones/)
+- 
+
+
+## Dev
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run dev
+```
