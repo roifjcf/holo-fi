@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
 
   // webpack: (config) => {
@@ -11,7 +12,8 @@ const nextConfig = {
   //   }
   //   return config
   // },
-  basePath: '/holo-fi', // for page deployment
+
+  // basePath: '/holo-fi', // for page deployment
 
 };
 

@@ -9,36 +9,28 @@ import { GrPrevious, GrNext } from "react-icons/gr";
 import { LuRepeat, LuRepeat1 } from "react-icons/lu";
 import { IoMenuOutline } from "react-icons/io5";
 
-import Playlist from "@/components/playlist";
 import AmbientSound from "@/components/ambientSound";
-
-
-
-
+import Footer from "@/components/footer";
+import Navigator from "@/components/navigator";
+import Playlist from "@/components/playlist";
 
 export default function Home() {
   const [tracks, setTracks] = useState<string[] | null>(null); // original order
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
-  // const [currentTime, setCurrentTime] = useState<number>(0);
-  // const [duration, setDuration] = useState<number>(0);
   const [playMode, setPlayMode] = useState<'repeatOne' | 'playAll' | 'shuffle'>('playAll');
   const [showPlayList, setShowPlaylist] = useState<boolean>(false);
   const [volume, setVolume] = useState(1);
 
   const bgm = useRef<HTMLAudioElement>(null);
+  const playlistElement = useRef<HTMLDivElement>(null);
 
   const [sfxList, setSfxList] = useState<string[] | null>(null);
 
   const handlePlay = () => { if (bgm.current) { bgm.current.play(); setIsPlaying(true); } }
   const handlePause = () => { if (bgm.current) { bgm.current.pause(); setIsPlaying(false); } }
-  // const handleTimeUpdate = () => {
-  //   if (bgm.current) { setCurrentTime(bgm.current.currentTime); }
-  // }
-  // const handleDurationUpdate = () => {
-  //   if (bgm.current) { setDuration(bgm.current.duration); }
-  // }
+
   const handlePlayPrev = () => {
     if (bgm.current) {
       if (playMode === "shuffle") {
@@ -69,15 +61,6 @@ export default function Home() {
     }
   }
 
-  // const handleShufflePlay = () => {
-  //   if (bgm.current) {
-  //     const randomNumber = Math.floor(Math.random()*tracks!.length);
-  //     setCurrentTrack(randomNumber);
-  //     setCurrentTime(0);
-  //     setIsPlaying(true);
-  //   }
-  // }
-
   const handleEnd = () => {
     if (bgm.current) {
       if (playMode === "repeatOne") {
@@ -98,18 +81,30 @@ export default function Home() {
     }
   }
 
+  const handleShowPlayList = () => {
+    setShowPlaylist(!showPlayList);
+    if (playlistElement.current) {
+      if (!showPlayList) { playlistElement.current.style.width = "100%"; }
+      else { playlistElement.current.style.width = "0%"; }
+    }
+  }
+
   useEffect(() => {
     const trackInit = async () => {
+      console.log("loading tracks...")
       const response = await fetch('api/trackinit');
       const data = await response.json();
       setIsLoading(false);
       setTracks(data['message']);
       setCurrentTrack(0);
+      console.log("loading tracks done!")
     }
     const sfxInit = async () => {
+      console.log("loading sound effects...")
       const response = await fetch('api/sfxinit');
       const data = await response.json();
       setSfxList(data['message']);
+      console.log("loading sound effects done!")
     }
     trackInit();
     sfxInit();
@@ -135,65 +130,61 @@ export default function Home() {
 
   return (
     <>
-    {isLoading ? <div>loading...</div> :
+    {isLoading ? <p className="loading">loading...</p> :
     
-    <div>
-      
-      <div>{sfxList?.map((sfx, i) => <AmbientSound key={i} name={sfx} /> )}</div>
+    <div className="page">
+      <Navigator />
+      <div className="main-section">
+        <div className="left">
+            <Playlist
+            playlistElement={playlistElement}
+            tracks={tracks}
+            handlePlaylistSongClick={handlePlaylistSongClick}
+            /> 
+          <IoMenuOutline className="playlist-btn" onClick={handleShowPlayList}/>
+        </div>
+        <div className="mid">
+          <div className="music-title">{tracks![currentTrack!].slice(0,-4)}</div>
+          <div className="play-control">
+            <div className="left">
+              <GrPrevious className="btn" onClick={handlePlayPrev} />
+              {isPlaying ? <FaRegCirclePause className="btn" onClick={handlePause} /> : <FaRegCirclePlay className="btn" onClick={handlePlay} />}
+              <GrNext className="btn" onClick={handlePlayNext} />
+            </div>
+            <div className="right">
+              {playMode === "repeatOne" ?
+              <LuRepeat1 className="btn" onClick={() => setPlayMode("playAll")} /> :
+              playMode === "playAll" ?
+              <LuRepeat className="btn" onClick={() => setPlayMode("shuffle")} /> :
+              <FaShuffle className="btn" onClick={() => setPlayMode("repeatOne")} />}
+              
+            </div>
+          </div>
 
+          <div className="volume-control">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={handleVolumeChange}
+            />
+          </div>
+        </div>
+
+        <div className="right">{sfxList?.map((sfx, i) => <AmbientSound key={i} name={sfx} /> )}</div>
+      </div>
+      <Footer />
+
+      {/* other stuff */}
       <audio
         ref={bgm}
         src={`bgm/${tracks![currentTrack!]}`}
-        // onTimeUpdate={handleTimeUpdate}
-        // onLoadedMetadata={handleDurationUpdate}
         onEnded={handleEnd}
-        // controls
         autoPlay
       />
       
-      <div>{tracks![currentTrack!].slice(0,-4)}</div>
-      <div className="flex flex-row">
-        <GrPrevious onClick={handlePlayPrev} />
-        {isPlaying ? <FaRegCirclePause onClick={handlePause} /> : <FaRegCirclePlay onClick={handlePlay} />}
-        <GrNext onClick={handlePlayNext} />
-
-        <div>============</div>
-        {playMode === "repeatOne" ?
-        <LuRepeat1 onClick={() => setPlayMode("playAll")} /> :
-        playMode === "playAll" ?
-        <LuRepeat onClick={() => setPlayMode("shuffle")} /> :
-        <FaShuffle onClick={() => setPlayMode("repeatOne")} />}
-
-        {/* <FaShuffle className="ml-1" onClick={handleShufflePlay} /> */}
-        <div>current mode: {playMode}</div>
-      </div>
-
-      <button>volume up</button>
-      <button>volume down</button>
-
-      <div>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value={volume}
-          onChange={handleVolumeChange}
-        />
-        {/* <span>{Math.round(volume * 100)}%</span> */}
-      </div>
-
-      <div>
-        <IoMenuOutline onClick={()=>setShowPlaylist(!showPlayList)}/>
-        {showPlayList ?
-        <Playlist
-          tracks={tracks}
-          handlePlaylistSongClick={handlePlaylistSongClick}
-        /> : <></>}
-      </div>
-
-      {/* <ul>{tracks?.map((track, i) => <li key={i}>{track}</li>)}</ul> */}
-
     </div>}
     </>
   );
