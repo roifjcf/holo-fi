@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  border: 1px solid red;
+  // border: 1px solid red;
   box-sizing: border-box;
   font-family: "Titillium Web", "M PLUS 1p", sans-serif;;
 }
@@ -25,6 +25,13 @@ body {
   
 }
 
+.loading-container {
+  width: 100%;
+  height: 100%;
+  background-color: $dark-blue;
+  color: $grey;
+}
+
 .loading {
   font-size: 4rem;
   position: absolute;
@@ -40,15 +47,16 @@ body {
 
   .main-section {
     width: 100%;
-    height: 90%;
+    height: 100%;
 
     position: relative;
-    background-image: url(/img/background.jpg);
+    background-image: url(/img/background.png);
     background-size: cover;
-    background-color: rgba(255, 255, 255, 0.486);
+    background-position: center;
+    // background-color: rgba(255, 255, 255, 0.486);
     background-blend-mode: overlay;
 
-    .left {
+    & > .left {
       position:absolute;
       display: flex;
       flex-direction: row;
@@ -57,45 +65,58 @@ body {
       width: 30vw;
     }
 
-    .mid {
+    & > .mid {
       margin: 0 auto;
       width: 30vw;
       min-width: 200px;
       position: absolute;
-      top: 80%;
+      top: 85%;
       left: 50%;
       transform: translate(-50%, -50%);
   
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 1rem 2rem;
+
+      
+
+      * {
+        width: 100%;
+      }
     }
 
-    .right {
+    & > .right {
       position: absolute;
       width: 25vw;
-      height: 100%;
-      top: 0;
+      height: 60%;
+      
       right: 0;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       align-content: flex-start;
+
+      padding: 1.5rem 2rem;
+      gap: 0.5rem;
+      
+      top: 50%;
+      transform: translate(0, -50%);
     }
 
   }
   
 
-  .music-title {
-    font-size: 2.3rem;
-  }
 
   .play-control {
     display: flex;
-    height: 2rem;
+    height: 3rem;
     width: 100%;
     flex-direction: row;
     position: relative;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
     .left {
       width: 60%;
       display: flex;
@@ -105,9 +126,10 @@ body {
       width: 40%;
       display: flex;
       flex-direction: row;
+      justify-content: right;
     }
     .btn {
-      $size: 2rem;
+      $size: 3rem;
       width: $size;
       height: $size;
       &:hover {
@@ -116,10 +138,50 @@ body {
     }
   }
   
+  ////////////////////////////////////
+  // utils
+
+  .container-bg {
+    background-color: #14171c8a;
+    border-radius: 8px;
+
+    backdrop-filter: blur(2px);
+    color: $white;
+  }
+
+  .music-title {
+    font-size: 1.4rem;
+    height: auto;
+    text-align: center;
+  }
+
+  .slider {
+    // https://stackoverflow.com/questions/70999024/how-to-change-color-size-and-shape-of-elements-in-a-range-slider
+    width: 100%;
+    height: 6px;
+    background: $grey;
+    opacity: 0.8;
+    border-radius: 2px;
+    -webkit-appearance: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::-webkit-slider-thumb {
+      position: relative;
+      left: initial;
+      bottom: 5px;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      box-shadow: -340px 0 0 320px $white, inset 0 0 0 40px $white, 340px 0 0 320px $grey, inset 0 0 0 40px $white;
+      margin-top: 5px;
+    }
+  }
+
 }
 
 
 @import 'ambientSound';
-@import 'footer';
-@import 'navigator';
 @import 'playlist';

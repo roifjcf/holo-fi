@@ -1,9 +1,8 @@
 .ambient-sound {
-  $size: 5rem;
-  background-color: grey;
+  $size: 5.5rem;
   width: $size;
   height: $size;
-  
+  margin-bottom: 0.5rem;
   
   .sfx-cell {
     width: 100%;
@@ -17,13 +16,21 @@
   .sfx-btn {
     width: 80%;
     height: 80%;
+    margin-bottom: 0.5rem;
+    // color: $grey;
+    opacity: 0.5;
+    filter: invert(100%);
 
     &:hover {
       cursor: pointer;
+      // color: $white;
+      opacity: 1;
     }
 
   }
   .playing {
-    background-color: red;
+    // color: $white;
+    opacity: 1;
+
   }
 }

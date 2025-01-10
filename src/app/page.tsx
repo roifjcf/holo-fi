@@ -10,8 +10,6 @@ import { LuRepeat, LuRepeat1 } from "react-icons/lu";
 import { IoMenuOutline } from "react-icons/io5";
 
 import AmbientSound from "@/components/ambientSound";
-import Footer from "@/components/footer";
-import Navigator from "@/components/navigator";
 import Playlist from "@/components/playlist";
 
 export default function Home() {
@@ -19,7 +17,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
-  const [playMode, setPlayMode] = useState<'repeatOne' | 'playAll' | 'shuffle'>('playAll');
+  const [playMode, setPlayMode] = useState<'repeatOne' | 'playAll' | 'shuffle'>('shuffle');
   const [showPlayList, setShowPlaylist] = useState<boolean>(false);
   const [volume, setVolume] = useState(1);
 
@@ -90,13 +88,20 @@ export default function Home() {
   }
 
   useEffect(() => {
+    // fetch soundtracks and sound effects
     const trackInit = async () => {
       console.log("loading tracks...")
       const response = await fetch('api/trackinit');
       const data = await response.json();
       setIsLoading(false);
       setTracks(data['message']);
-      setCurrentTrack(0);
+      // setCurrentTrack(0);
+
+      // set random track on start
+      const randomNumber = Math.floor(Math.random()*data['message']!.length);
+      // console.log(randomNumber);
+      setCurrentTrack(randomNumber);
+
       console.log("loading tracks done!")
     }
     const sfxInit = async () => {
@@ -111,6 +116,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // event listeners for key press
     const handlePlayByKey = (e:any) => {
       if (e.key === ' ' && bgm.current) {
         if (isPlaying) {
@@ -130,23 +136,23 @@ export default function Home() {
 
   return (
     <>
-    {isLoading ? <p className="loading">loading...</p> :
+    {isLoading ? <div className="loading-container"><p className="loading">loading...</p></div> :
     
     <div className="page">
-      <Navigator />
       <div className="main-section">
-        <div className="left">
+        {/* <div className="left">
             <Playlist
             playlistElement={playlistElement}
             tracks={tracks}
             handlePlaylistSongClick={handlePlaylistSongClick}
             /> 
           <IoMenuOutline className="playlist-btn" onClick={handleShowPlayList}/>
-        </div>
-        <div className="mid">
+        </div> */}
+        <div className="mid container-bg">
           <div className="music-title">{tracks![currentTrack!].slice(0,-4)}</div>
           <div className="play-control">
-            <div className="left">
+          {isPlaying ? <FaRegCirclePause className="btn" onClick={handlePause} /> : <FaRegCirclePlay className="btn" onClick={handlePlay} />}
+            {/* <div className="left">
               <GrPrevious className="btn" onClick={handlePlayPrev} />
               {isPlaying ? <FaRegCirclePause className="btn" onClick={handlePause} /> : <FaRegCirclePlay className="btn" onClick={handlePlay} />}
               <GrNext className="btn" onClick={handlePlayNext} />
@@ -157,12 +163,12 @@ export default function Home() {
               playMode === "playAll" ?
               <LuRepeat className="btn" onClick={() => setPlayMode("shuffle")} /> :
               <FaShuffle className="btn" onClick={() => setPlayMode("repeatOne")} />}
-              
-            </div>
+            </div> */}
           </div>
 
           <div className="volume-control">
             <input
+              className="slider"
               type="range"
               min="0"
               max="1"
@@ -173,9 +179,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="right">{sfxList?.map((sfx, i) => <AmbientSound key={i} name={sfx} /> )}</div>
+        <div className="right container-bg">
+          {sfxList?.map((sfx, i) => <AmbientSound key={i} name={sfx} /> )}
+        </div>
       </div>
-      <Footer />
 
       {/* other stuff */}
       <audio
