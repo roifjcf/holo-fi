@@ -50,7 +50,7 @@ body {
     height: 100%;
 
     position: relative;
-    background-image: url(/img/background.png);
+    background-image: url(/img/background.png); // tricky https://stackoverflow.com/questions/68497926/how-can-i-fix-failing-to-load-resource-status-404-github-pages
     background-size: cover;
     background-position: center;
     // background-color: rgba(255, 255, 255, 0.486);

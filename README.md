@@ -11,7 +11,6 @@ A music player that plays relaxing music produced by Hololive.
   - [M PLUS 1p](https://fonts.google.com/specimen/M+PLUS+1p)
   - [Titillium Web](https://fonts.google.com/specimen/Titillium+Web)
 - Background: [fcjfior](https://x.com/fcjfior)
-<!-- - Sound effects: [ZapSplat](https://www.zapsplat.com/) -->
 - Sound effects: [Pixabay](https://pixabay.com/)
 - Music
   - [hololive music studio - lo-fi & chill mix II [#hololivemusicstudio]](https://www.youtube.com/watch?v=cBlrARl9tIQ&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv)
@@ -24,3 +23,7 @@ A music player that plays relaxing music produced by Hololive.
 
 - `npm i` install dependencies
 - `npm run dev` run the app
+
+
+
+<!-- - Sound effects: [ZapSplat](https://www.zapsplat.com/) -->
