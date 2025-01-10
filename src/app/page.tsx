@@ -191,7 +191,6 @@ export default function Home() {
         onEnded={handleEnd}
         autoPlay
       />
-      
     </div>}
     </>
   );
