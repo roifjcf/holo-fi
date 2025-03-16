@@ -95,7 +95,7 @@ body {
       position: absolute;
       width: 24vw;
       height: 60%;
-      max-height: 40vh;
+      max-height: 50vh;
       
       right: 0;
       display: flex;
@@ -116,6 +116,8 @@ body {
 
       @media screen and (max-width: 712px) {
         padding: 0.5rem;
+        top: 0;
+        transform: translate(0, 10%);
       }
     }
 
