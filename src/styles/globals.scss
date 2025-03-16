@@ -44,18 +44,21 @@ body {
   width: 100%;
   height: 100%;
   min-height: 600px;
+  display: flex;
+  justify-content: center;
+  background-color: $dark-blue;
 
   .main-section {
     width: 100%;
+    max-width: 1920px;
     height: 100%;
-
+    
     position: relative;
     background-image: url(https://roifjcf.github.io/holo-fi/img/background.png); // for github deployment :(
     // background-image: url(/img/background.png); // for local dev
     background-size: cover;
     background-position: center;
     // background-color: rgba(255, 255, 255, 0.486);
-
 
     & > .left {
       position:absolute;
@@ -68,8 +71,8 @@ body {
 
     & > .mid {
       margin: 0 auto;
-      width: 30vw;
-      min-width: 200px;
+      width: 32vw;
+      min-width: 300px;
       position: absolute;
       top: 85%;
       left: 50%;
@@ -85,12 +88,14 @@ body {
       * {
         width: 100%;
       }
+
     }
 
     & > .right {
       position: absolute;
-      width: 25vw;
+      width: 24vw;
       height: 60%;
+      max-height: 40vh;
       
       right: 0;
       display: flex;
@@ -103,11 +108,15 @@ body {
       
       top: 50%;
       transform: translate(0, -50%);
+
+      @media screen and (max-width: 1024px) {
+        align-content: center;
+        width: 20vw;
+      }
     }
 
   }
   
-
 
   .play-control {
     display: flex;
@@ -135,6 +144,12 @@ body {
       height: $size;
       &:hover {
         cursor: pointer;
+      }
+
+      @media screen and (max-width: 712px) {
+        $size: 2rem;
+        width: $size;
+        height: $size;
       }
     }
   }
@@ -182,6 +197,12 @@ body {
   }
 
 }
+
+// @media (min-width: 1440px) {
+//   .main-section {
+//     width: 1440px;
+//   }
+// }
 
 
 @import 'ambientSound';

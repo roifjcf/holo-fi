@@ -11,6 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
   }
 
   .sfx-btn {
@@ -27,6 +28,17 @@
       opacity: 1;
     }
 
+    @media screen and (max-width: 712px) {
+      $size: 2.5rem;
+      width: $size;
+      height: $size;
+    }
+
+    @media screen and (max-width: 512px) {
+      $size: 2rem;
+      width: $size;
+      height: $size;
+    }
   }
   .playing {
     // color: $white;

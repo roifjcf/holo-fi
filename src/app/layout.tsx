@@ -3,7 +3,7 @@ import "@/styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "holo-fi",
-  description: "A music player that plays relaxing music from Hololive",
+  description: "A music player that plays relaxing music produced by Hololive.",
 };
 
 export default function RootLayout({
