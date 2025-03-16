@@ -113,6 +113,10 @@ body {
         align-content: center;
         width: 20vw;
       }
+
+      @media screen and (max-width: 712px) {
+        padding: 0.5rem;
+      }
     }
 
   }
