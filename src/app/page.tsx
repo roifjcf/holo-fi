@@ -4,21 +4,20 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { FaRegCirclePlay, FaRegCirclePause , FaShuffle} from "react-icons/fa6";
-import { GrPrevious, GrNext } from "react-icons/gr";
-import { LuRepeat, LuRepeat1 } from "react-icons/lu";
-import { IoMenuOutline } from "react-icons/io5";
 
-import AmbientSound from "@/components/ambientSound";
-import Playlist from "@/components/playlist";
+
+import AmbientSound from "@/features/ambientSound/ambientSound";
+import Playlist from "@/features/playlist/playlist";
+import PlayControl from "@/features/playControl/playControl";
+import { PlayMode } from "@/common/type";
+import Loading from "@/components/loading";
 
 export default function Home() {
   const [tracks, setTracks] = useState<string[] | null>(null); // original order
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
-  const [playMode, setPlayMode] = useState<'repeatOne' | 'playAll' | 'shuffle'>('shuffle');
-  const [showPlayList, setShowPlaylist] = useState<boolean>(false);
+  const [playMode, setPlayMode] = useState<PlayMode>('shuffle');
   const [volume, setVolume] = useState(1);
 
   const bgm = useRef<HTMLAudioElement>(null);
@@ -30,16 +29,17 @@ export default function Home() {
   const handlePause = () => { if (bgm.current) { bgm.current.pause(); setIsPlaying(false); } }
 
   const handlePlayPrev = () => {
-    if (bgm.current) {
-      if (playMode === "shuffle") {
-        const randomNumber = Math.floor(Math.random()*tracks!.length);
-        setCurrentTrack(randomNumber);
-      } else {
-        setCurrentTrack(currentTrack => (currentTrack!-1+tracks!.length)%tracks!.length);
+      if (bgm.current) {
+        if (playMode === "shuffle") {
+          const randomNumber = Math.floor(Math.random()*tracks!.length);
+          setCurrentTrack(randomNumber);
+        } else {
+          setCurrentTrack(currentTrack => (currentTrack!-1+tracks!.length)%tracks!.length);
+        }
+        setIsPlaying(true);
       }
-      setIsPlaying(true);
     }
-  }
+  
   const handlePlayNext = () => {
     if (bgm.current) {
       if (playMode === "shuffle") {
@@ -52,12 +52,16 @@ export default function Home() {
     }
   }
 
+
+
   const handlePlaylistSongClick = (i:number) => {
     if (bgm.current) {
       setCurrentTrack(i);
       setIsPlaying(true);
     }
   }
+
+
 
   const handleEnd = () => {
     if (bgm.current) {
@@ -79,13 +83,7 @@ export default function Home() {
     }
   }
 
-  const handleShowPlayList = () => {
-    setShowPlaylist(!showPlayList);
-    if (playlistElement.current) {
-      if (!showPlayList) { playlistElement.current.style.width = "100%"; }
-      else { playlistElement.current.style.width = "0%"; }
-    }
-  }
+
 
   useEffect(() => {
     // fetch soundtracks and sound effects
@@ -136,53 +134,31 @@ export default function Home() {
 
   return (
     <>
-    {isLoading ? <div className="loading-container"><p className="loading">loading...</p></div> :
+    {isLoading ? <Loading />:
     
     <div className="page">
-      <div className="main-section">
-        {/* <div className="left">
-            <Playlist
-            playlistElement={playlistElement}
-            tracks={tracks}
-            handlePlaylistSongClick={handlePlaylistSongClick}
-            /> 
-          <IoMenuOutline className="playlist-btn" onClick={handleShowPlayList}/>
-        </div> */}
-        <div className="mid container-bg">
-          <div className="music-title">{tracks![currentTrack!].slice(0,-4)}</div>
-          <div className="play-control">
-          {isPlaying ? <FaRegCirclePause className="btn" onClick={handlePause} /> : <FaRegCirclePlay className="btn" onClick={handlePlay} />}
-            {/* <div className="left">
-              <GrPrevious className="btn" onClick={handlePlayPrev} />
-              {isPlaying ? <FaRegCirclePause className="btn" onClick={handlePause} /> : <FaRegCirclePlay className="btn" onClick={handlePlay} />}
-              <GrNext className="btn" onClick={handlePlayNext} />
-            </div>
-            <div className="right">
-              {playMode === "repeatOne" ?
-              <LuRepeat1 className="btn" onClick={() => setPlayMode("playAll")} /> :
-              playMode === "playAll" ?
-              <LuRepeat className="btn" onClick={() => setPlayMode("shuffle")} /> :
-              <FaShuffle className="btn" onClick={() => setPlayMode("repeatOne")} />}
-            </div> */}
-          </div>
+        <Playlist
+          playlistElement={playlistElement}
+          tracks={tracks}
+          handlePlaylistSongClick={handlePlaylistSongClick}
+        />
 
-          <div className="volume-control">
-            <input
-              className="slider"
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={handleVolumeChange}
-            />
-          </div>
-        </div>
 
-        <div className="right container-bg">
-          {sfxList?.map((sfx, i) => <AmbientSound key={i} name={sfx} /> )}
-        </div>
-      </div>
+        <PlayControl
+          tracks={tracks}
+          currentTrack={currentTrack}
+          isPlaying={isPlaying}
+          setPlayMode={setPlayMode}
+          volume={volume}
+          handleVolumeChange={handleVolumeChange}
+          handlePlay={handlePlay}
+          handlePlayPrev={handlePlayPrev}
+          handlePause={handlePause}
+          handlePlayNext={handlePlayNext}
+          playMode={playMode}
+        />
+
+        <AmbientSound sfxList={sfxList}/>
 
       {/* other stuff */}
       <audio

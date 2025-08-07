@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "@/styles/globals.scss";
+import "@/styles/main.scss";
+
 
 export const metadata: Metadata = {
   title: "holo-fi",

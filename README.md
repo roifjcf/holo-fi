@@ -21,9 +21,9 @@ A music player that plays relaxing music produced by Hololive.
 
 ## Commands
 
-- `npm i` install dependencies
-- `npm run dev` run the app
-
-
+```
+npm i
+npm run dev
+```
 
 <!-- - Sound effects: [ZapSplat](https://www.zapsplat.com/) -->

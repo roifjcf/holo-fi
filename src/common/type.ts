@@ -1,0 +1,1 @@
+export type PlayMode = 'repeatOne' | 'playAll' | 'shuffle';

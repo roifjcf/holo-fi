@@ -1,9 +1,16 @@
-"use client";
-
 import { AiOutlineSound, AiFillSound } from "react-icons/ai";
 import { useRef, useState } from "react";
 
-export default function AmbientSound(props: any) {
+interface Props {
+  name: string,
+  key: number,
+};
+
+
+export default function sfxUnit({
+  name,
+  key
+}: Props) {
   const sfx = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState(0.5);
@@ -27,36 +34,11 @@ export default function AmbientSound(props: any) {
     }
   }
 
-  // const handleEndSfxShadow = () => {
-  //   if (sfxShadow.current) {
-  //     sfxShadow.current.currentTime = 0;
-  //     sfxShadow.current.play();
-  //     setIsPlaying(true);
-  //   }
-  // }
-
   const togglePlay = () => {
     if (timeoutInfo) {
       clearTimeout(timeoutInfo);
       setTimeoutInfo(null);
     }
-
-    // if (sfx.current && sfxShadow.current) {
-    //   if (isPlaying) { // pause
-    //     sfx.current.pause();
-    //     sfx.current.currentTime = 0;
-    //     sfxShadow.current.pause();
-    //     sfxShadow.current.currentTime = 0;
-    //     setIsPlaying(false);
-    //   } else { // play
-    //     sfx.current.play();
-    //     setIsPlaying(true);
-    //     let id = setTimeout(() => {
-    //       sfxShadow.current!.play();
-    //     }, 3000);
-    //     setTimeoutInfo(id);
-    //   }
-    // }
 
     if (sfx.current) {
       if (isPlaying) { // pause
@@ -73,22 +55,21 @@ export default function AmbientSound(props: any) {
   }
     
   return(
-    <div className="ambient-sound">
-      <div className="sfx-cell">
-        {/* <p className="sfx-title" >{props.name}</p> */}
+    <div className="sfxunit-container">
+      <div className="cell">
         {isPlaying && 
         <img 
-          className="sfx-btn playing"
+          className="icon-button playing"
           onClick={togglePlay}
-          src={`img/sfxIcons/${props.name.slice(0,-4)}.png`}
-          alt={`${props.name}.png`}
+          src={`img/sfxIcons/${name.slice(0,-4)}.png`}
+          alt={`${name}.png`}
         />}
         {!isPlaying && 
         <img 
-          className="sfx-btn"
+          className="icon-button"
           onClick={togglePlay}
-          src={`img/sfxIcons/${props.name.slice(0,-4)}.png`}
-          alt={`${props.name}.png`}
+          src={`img/sfxIcons/${name.slice(0,-4)}.png`}
+          alt={`${name}.png`}
         />}
         {/* {isPlaying && <AiFillSound className="sfx-btn playing" onClick={togglePlay}/>}
         {!isPlaying && <AiOutlineSound className="sfx-btn" onClick={togglePlay}/>} */}
@@ -102,16 +83,15 @@ export default function AmbientSound(props: any) {
           onChange={handleVolumeChange}
         /> */}
       </div>
+
+      
       <audio
         ref={sfx}
-        src={`sfx/${props.name}`}
+        src={`sfx/${name}`}
         onEnded={handleEndSfx}
       />
-      {/* <audio
-        ref={sfxShadow}
-        src={`sfx/${props.name}`}
-        onEnded={handleEndSfxShadow}
-      /> */}
+
     </div>
   )
+  
 }

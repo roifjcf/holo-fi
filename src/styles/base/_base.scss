@@ -1,0 +1,47 @@
+@use '../themes/theme' as *;
+@use '../abstracts/variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  // border: 1px solid red;
+  box-sizing: border-box;
+  font-family: "Titillium Web", "M PLUS 1p", sans-serif;;
+}
+
+* {
+  overflow: auto; /* Allow scrolling */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  // background-color: $global-background;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+.container-bg {
+  background-color: #14171c8a;
+  border-radius: 8px;
+
+  backdrop-filter: blur(4px);
+  color: $white;
+}
+
+.icon-button {
+  opacity: 0.5;
+  filter: invert(100%);
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+}
