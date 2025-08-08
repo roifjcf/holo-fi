@@ -2,38 +2,18 @@
 @use '../../abstracts/variables' as *;
 
 .sfxunit-container {
-  $size: 5.5rem;
+  $size: $size-4xl;
   width: $size;
-  height: $size;
+  height: auto;
   margin-bottom: 0.5rem;
   
-  .cell {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $space-1;
 
-  }
 
-  .btn {
-    width: 60%;
-    height: 60%;
-    margin-bottom: 0.5rem;
-
-    @media screen and (max-width: 712px) {
-      $size: 2.5rem;
-      width: $size;
-      height: $size;
-    }
-
-    @media screen and (max-width: 512px) {
-      $size: 2rem;
-      width: $size;
-      height: $size;
-    }
-  }
   .playing {
     // color: $white;
     opacity: 1;

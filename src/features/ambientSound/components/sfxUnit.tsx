@@ -46,8 +46,8 @@ export default function sfxUnit({
         sfx.current.currentTime = 0;
         setIsPlaying(false);
       } else { // play
-        setVolume(0.5);
-        sfx.current.volume = 0.5;
+        // setVolume(0.5);
+        // sfx.current.volume = 0.5;
         sfx.current.play();
         setIsPlaying(true);
       }
@@ -56,33 +56,26 @@ export default function sfxUnit({
     
   return(
     <div className="sfxunit-container">
-      <div className="cell">
-        {isPlaying && 
-        <img 
-          className="icon-button playing"
-          onClick={togglePlay}
-          src={`img/sfxIcons/${name.slice(0,-4)}.png`}
-          alt={`${name}.png`}
-        />}
-        {!isPlaying && 
-        <img 
-          className="icon-button"
-          onClick={togglePlay}
-          src={`img/sfxIcons/${name.slice(0,-4)}.png`}
-          alt={`${name}.png`}
-        />}
-        {/* {isPlaying && <AiFillSound className="sfx-btn playing" onClick={togglePlay}/>}
-        {!isPlaying && <AiOutlineSound className="sfx-btn" onClick={togglePlay}/>} */}
-        {/* <input
-          className="slider"
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value={volume}
-          onChange={handleVolumeChange}
-        /> */}
-      </div>
+      <img 
+        className={`icon-button${isPlaying ? ' playing' : ''}`}
+        onClick={togglePlay}
+        src={`img/sfxicons/${name.slice(0, -4)}.png`}
+        alt={`${name}.png`}
+        draggable={false}
+      />
+
+      <input
+        className="slider"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value={volume}
+        onChange={handleVolumeChange}
+        style={{
+          background: `linear-gradient(to right, white ${volume * 100}%, grey ${volume * 100}%)`,
+        }}
+      />
 
       
       <audio

@@ -2,33 +2,46 @@
 @use '../../abstracts/variables' as *;
 
 .playlist-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin-right: $space-2;
 
+  @media (max-width: $breakpoint-md) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .playlist-list {
   width: 0%;
   height: 100%;
-  overflow: scroll;
   transition: width 1s ease-in-out;
   color: $white;
-  font-size: 1.2rem;
+  z-index: $z-index-overlay;
 
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
-  }
 }
 
 .playlist-track {
   transition: background-color 0.3s ease;
+  padding: $space-1 $space-2;
   &:hover {
     cursor: pointer;
     background-color: rgba($white, 0.2);
   }
 }
 
-.playlist-btn {
-  width: $size-4xl;
-  height: $size-4xl;
+.playlist-current {
+  background-color: rgba($white, 0.2);
+}
+
+
+
+.playlist-closebutton {
+  margin-top: $space-1;
+  margin-left: $space-2;
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
 }

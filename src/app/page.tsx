@@ -19,6 +19,7 @@ export default function Home() {
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [playMode, setPlayMode] = useState<PlayMode>('shuffle');
   const [volume, setVolume] = useState(1);
+  const [showPlayList, setShowPlaylist] = useState<boolean>(false);
 
   const bgm = useRef<HTMLAudioElement>(null);
   const playlistElement = useRef<HTMLDivElement>(null);
@@ -113,6 +114,16 @@ export default function Home() {
     sfxInit();
   }, []);
 
+
+
+  const handleShowPlayList = () => {
+    setShowPlaylist(!showPlayList);
+    if (playlistElement.current) {
+      if (!showPlayList) { playlistElement.current.style.width = "100%"; }
+      else { playlistElement.current.style.width = "0%"; }
+    }
+  }
+
   useEffect(() => {
     // event listeners for key press
     const handlePlayByKey = (e:any) => {
@@ -125,12 +136,22 @@ export default function Home() {
           setIsPlaying(true);
         }
       }
+      if (e.key === 'Escape') {
+        setShowPlaylist(false);
+        if (playlistElement.current) {
+          playlistElement.current.style.width = "0%";
+        }
+      }
     };
     window.addEventListener('keydown', handlePlayByKey);
     return () => {
       window.removeEventListener('keydown', handlePlayByKey);
     };
   }, [isPlaying]);
+
+
+  
+  
 
   return (
     <>
@@ -141,6 +162,8 @@ export default function Home() {
           playlistElement={playlistElement}
           tracks={tracks}
           handlePlaylistSongClick={handlePlaylistSongClick}
+          currentTrack={currentTrack}
+          handleShowPlayList={handleShowPlayList}
         />
 
 
@@ -156,6 +179,7 @@ export default function Home() {
           handlePause={handlePause}
           handlePlayNext={handlePlayNext}
           playMode={playMode}
+          handleShowPlayList={handleShowPlayList}
         />
 
         <AmbientSound sfxList={sfxList}/>
