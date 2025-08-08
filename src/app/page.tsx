@@ -158,31 +158,32 @@ export default function Home() {
     {isLoading ? <Loading />:
     
     <div className="page">
-        <Playlist
-          playlistElement={playlistElement}
-          tracks={tracks}
-          handlePlaylistSongClick={handlePlaylistSongClick}
-          currentTrack={currentTrack}
-          handleShowPlayList={handleShowPlayList}
-        />
+      <h1 className="hidden-text">holo-fi</h1>
+      <Playlist
+        playlistElement={playlistElement}
+        tracks={tracks}
+        handlePlaylistSongClick={handlePlaylistSongClick}
+        currentTrack={currentTrack}
+        handleShowPlayList={handleShowPlayList}
+      />
 
 
-        <PlayControl
-          tracks={tracks}
-          currentTrack={currentTrack}
-          isPlaying={isPlaying}
-          setPlayMode={setPlayMode}
-          volume={volume}
-          handleVolumeChange={handleVolumeChange}
-          handlePlay={handlePlay}
-          handlePlayPrev={handlePlayPrev}
-          handlePause={handlePause}
-          handlePlayNext={handlePlayNext}
-          playMode={playMode}
-          handleShowPlayList={handleShowPlayList}
-        />
+      <PlayControl
+        tracks={tracks}
+        currentTrack={currentTrack}
+        isPlaying={isPlaying}
+        setPlayMode={setPlayMode}
+        volume={volume}
+        handleVolumeChange={handleVolumeChange}
+        handlePlay={handlePlay}
+        handlePlayPrev={handlePlayPrev}
+        handlePause={handlePause}
+        handlePlayNext={handlePlayNext}
+        playMode={playMode}
+        handleShowPlayList={handleShowPlayList}
+      />
 
-        <AmbientSound sfxList={sfxList}/>
+      <AmbientSound sfxList={sfxList}/>
 
       {/* other stuff */}
       <audio
