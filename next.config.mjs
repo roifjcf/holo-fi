@@ -15,9 +15,6 @@ const nextConfig = {
 
   // basePath: '/holo-fi', // for page deployment
 
-  output: "export",
-  basePath: "/holo-fi", 
-  assetPrefix: "/holo-fi/",
 };
 
 export default nextConfig;
