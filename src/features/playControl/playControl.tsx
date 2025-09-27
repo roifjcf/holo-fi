@@ -5,6 +5,8 @@ import { PlayMode } from "@/common/type";
 import { IoMenuOutline } from "react-icons/io5";
 import { useState } from "react";
 
+import './playcontrol.scss';
+
 interface Props {
   tracks: string[] | null,
   currentTrack: number | null,

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./playlist.scss";
 
 interface Props {
   playlistElement: React.RefObject<HTMLDivElement>,
