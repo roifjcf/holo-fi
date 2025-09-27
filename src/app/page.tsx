@@ -161,7 +161,7 @@ export default function Home() {
     <div className="page">
       <h1 className="hidden-text">Hololive Lo-fi Music Player</h1>
 
-      <div className="background">
+      {/* <div className="background">
         <Image
           src="/img/background.png"
           alt="background"
@@ -169,7 +169,7 @@ export default function Home() {
           priority
           style={{ objectFit: "cover" }}
         />
-      </div>
+      </div> */}
 
 
       <div className="content">
