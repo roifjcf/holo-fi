@@ -1,6 +1,6 @@
 import { AiOutlineSound, AiFillSound } from "react-icons/ai";
 import { useRef, useState } from "react";
-
+import "./sfxunit.scss";
 interface Props {
   name: string,
   key: number,

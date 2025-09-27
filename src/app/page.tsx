@@ -10,8 +10,8 @@ import AmbientSound from "@/features/ambientSound/ambientSound";
 import Playlist from "@/features/playlist/playlist";
 import PlayControl from "@/features/playControl/playControl";
 import { PlayMode } from "@/common/type";
-import Loading from "@/components/loading";
-import Image from "next/image";
+import Loading from "@/components/loading/loading";
+import "./page.scss";
 
 export default function Home() {
   const [tracks, setTracks] = useState<string[] | null>(null); // original order

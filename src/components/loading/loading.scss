@@ -1,6 +1,5 @@
-@use '../themes/theme' as *;
-@use '../abstracts/variables' as *;
-
+@use 'styles/themes/theme' as *;
+@use 'styles/abstracts/variables' as *;
 
 .loading-container {
   width: 100%;

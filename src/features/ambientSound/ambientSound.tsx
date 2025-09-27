@@ -1,4 +1,5 @@
 import SfxUnit from "./components/sfxUnit";
+import "./ambientSound.scss";
 
 interface Props {
   sfxList: string[] | null,
