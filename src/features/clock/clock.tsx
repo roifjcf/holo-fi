@@ -10,6 +10,7 @@ export default function Clock() {
   
   const [currTime, setCurrTime] = useState<string>('');
   const [currDate, setCurrDate] = useState<string>('');
+  const [currDay, setCurrDay] = useState<string>('');
 
   useEffect(() => {
 
@@ -32,9 +33,16 @@ export default function Clock() {
       return `${day < 10 ? '0'+day : day} ${month} ${year}`;
     }
 
+    const getDayString = () => {
+      const now = new Date();
+      const weekNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      return weekNames[now.getDay()];
+    }
+
     const updateTime = () => {
       setCurrTime(getTimeString());
       setCurrDate(getDateString());
+      setCurrDay(getDayString());
     }
 
     updateTime();
@@ -47,7 +55,7 @@ export default function Clock() {
   return <>
     <div className="clock-container">
       <h2 className="clock-time" >{currTime}</h2>
-      <p className="clock-week">{currDate}</p>
+      <p className="clock-week">{currDate} ({currDay})</p>
     </div>
   </>;
 }
