@@ -207,6 +207,7 @@ export default function Home() {
         src={`bgm/${tracks![currentTrack!]}`}
         onEnded={handleEnd}
         autoPlay
+        preload="none"
       />
     </div>}
     </>

@@ -83,6 +83,7 @@ export default function sfxUnit({
         ref={sfx}
         src={`sfx/${name}`}
         onEnded={handleEndSfx}
+        preload="none"
       />
 
     </div>
