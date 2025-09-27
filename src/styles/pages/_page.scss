@@ -7,21 +7,29 @@
   width: 100%;
   height: 100dvh;
   min-height: 600px;
-  // display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+
   background-color: $dark-blue;
-  
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
   position: relative;
-  background-image: url(https://roifjcf.github.io/holo-fi/img/background.png); // for github deployment :(
-  background-size: cover;
-  background-position: center;
 
-  @media (max-width: $breakpoint-md) {
-    display: flex;
+  .background {
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
+  .content {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    align-items: flex-end;
 
+    @media (max-width: $breakpoint-md) {
+      
+      display: flex;
+    }
+  }
 }

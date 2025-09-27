@@ -11,6 +11,7 @@ import Playlist from "@/features/playlist/playlist";
 import PlayControl from "@/features/playControl/playControl";
 import { PlayMode } from "@/common/type";
 import Loading from "@/components/loading";
+import Image from "next/image";
 
 export default function Home() {
   const [tracks, setTracks] = useState<string[] | null>(null); // original order
@@ -158,32 +159,47 @@ export default function Home() {
     {isLoading ? <Loading />:
     
     <div className="page">
-      <h1 className="hidden-text">holo-fi</h1>
-      <Playlist
-        playlistElement={playlistElement}
-        tracks={tracks}
-        handlePlaylistSongClick={handlePlaylistSongClick}
-        currentTrack={currentTrack}
-        handleShowPlayList={handleShowPlayList}
-      />
+      <h1 className="hidden-text">Hololive Lo-fi Music Player</h1>
+
+      <div className="background">
+        <Image
+          src="/img/background.png"
+          alt="background"
+          fill
+          priority
+          style={{ objectFit: "cover" }}
+        />
+      </div>
 
 
-      <PlayControl
-        tracks={tracks}
-        currentTrack={currentTrack}
-        isPlaying={isPlaying}
-        setPlayMode={setPlayMode}
-        volume={volume}
-        handleVolumeChange={handleVolumeChange}
-        handlePlay={handlePlay}
-        handlePlayPrev={handlePlayPrev}
-        handlePause={handlePause}
-        handlePlayNext={handlePlayNext}
-        playMode={playMode}
-        handleShowPlayList={handleShowPlayList}
-      />
+      <div className="content">
+        <Playlist
+          playlistElement={playlistElement}
+          tracks={tracks}
+          handlePlaylistSongClick={handlePlaylistSongClick}
+          currentTrack={currentTrack}
+          handleShowPlayList={handleShowPlayList}
+        />
 
-      <AmbientSound sfxList={sfxList}/>
+
+        <PlayControl
+          tracks={tracks}
+          currentTrack={currentTrack}
+          isPlaying={isPlaying}
+          setPlayMode={setPlayMode}
+          volume={volume}
+          handleVolumeChange={handleVolumeChange}
+          handlePlay={handlePlay}
+          handlePlayPrev={handlePlayPrev}
+          handlePause={handlePause}
+          handlePlayNext={handlePlayNext}
+          playMode={playMode}
+          handleShowPlayList={handleShowPlayList}
+        />
+
+        <AmbientSound sfxList={sfxList}/>
+      </div>
+      
 
       {/* other stuff */}
       <audio
