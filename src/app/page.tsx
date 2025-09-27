@@ -214,6 +214,34 @@ export default function Home() {
       />
     </div>
     <div className="vaporwave-overlay"></div>
+    {/* <div className="particles-overlay">
+      {Array.from({ length: 50 }).map((_, i) => (
+        <div
+          key={i}
+          className="particle"
+          style={{
+            left: `${Math.random() * 100}vw`,
+            top: `${Math.random() * 100}vh`,
+            animationDuration: `${3 + Math.random() * 5}s`,
+            backgroundColor: `hsl(${Math.random() * 360}, 70%, 80%)`,
+          }}
+        />
+      ))}
+    </div> */}
+    {/* <div className="rain-overlay">
+      {Array.from({ length: 100 }).map((_, i) => (
+        <div
+          key={i}
+          className="rain-drop"
+          style={{
+            left: `${Math.random() * 100}vw`,
+            animationDuration: `${0.5 + Math.random() * 0.5}s`,
+            opacity: 0.2 + Math.random() * 0.3,
+            height: `${10 + Math.random() * 10}px`,
+          }}
+        />
+      ))}
+    </div> */}
     </>
     }
     </>
