@@ -75,6 +75,7 @@ export default function sfxUnit({
         style={{
           background: `linear-gradient(to right, white ${volume * 100}%, grey ${volume * 100}%)`,
         }}
+        aria-label="sfx Volume"
       />
 
       
