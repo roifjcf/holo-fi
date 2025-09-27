@@ -11,16 +11,19 @@
 
   background-color: $dark-blue;
 
-  background-image: url(https://roifjcf.github.io/holo-fi/img/background.webp); // for github deployment :(
-  background-size: cover;
-  background-position: center;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://roifjcf.github.io/holo-fi/img/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-  // .background {
-  //   height: 100%;
-  //   position: absolute;
-  //   inset: 0;
-  //   z-index: 0;
-  // }
+    opacity: 0;
+    animation: fadeInBg 1.5s ease-in forwards;
+    z-index: 0;
+  }
 
   .content {
     height: 100%;
@@ -37,4 +40,9 @@
       display: flex;
     }
   }
+}
+
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
