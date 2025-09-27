@@ -8,7 +8,7 @@
   height: 100dvh;
   min-height: 600px;
   position: relative;
-
+  z-index: 0;
   background-color: $dark-blue;
 
   &::before {
@@ -19,7 +19,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     opacity: 0;
     animation: fadeInBg 1.5s ease-in forwards;
     z-index: 0;
@@ -29,14 +28,12 @@
     height: 100%;
     position: relative;
     z-index: 1;
-    
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     align-items: flex-end;
 
     @media (max-width: $breakpoint-md) {
-      
       display: flex;
     }
   }
@@ -45,4 +42,42 @@
 @keyframes fadeInBg {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+.retro-screen {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    z-index: 2;
+    animation: scanlineMove 3s linear infinite;
+  }
+}
+
+@keyframes scanlineMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 3px; }
+}
+
+
+
+.vaporwave-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  background: linear-gradient(135deg, rgba(19, 49, 247, 0.205), rgba(0, 0, 0, 0.1));
+  mix-blend-mode: overlay;
+  overflow: hidden;
 }

@@ -1,0 +1,8 @@
+@mixin aberration($size: 0.2rem, $opacity: 0.6) {
+  --aberration-offset: #{$size};
+  --aberration-opacity: #{$opacity};
+
+  text-shadow: 
+    calc(var(--aberration-offset)) 0 rgba(255, 10, 92, var(--aberration-opacity)),
+    calc(-1 * var(--aberration-offset)) 0 rgba(22, 133, 245, var(--aberration-opacity));
+}

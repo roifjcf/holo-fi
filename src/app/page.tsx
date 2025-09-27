@@ -157,8 +157,8 @@ export default function Home() {
   return (
     <>
     {isLoading ? <Loading />:
-    
-    <div className="page">
+    <>
+    <div className="page retro-screen">
       <h1 className="hidden-text">Hololive Lo-fi Music Player</h1>
 
       {/* <div className="background">
@@ -170,7 +170,6 @@ export default function Home() {
           style={{ objectFit: "cover" }}
         />
       </div> */}
-
 
       <div className="content">
         <Playlist
@@ -209,7 +208,10 @@ export default function Home() {
         autoPlay
         preload="none"
       />
-    </div>}
+    </div>
+    <div className="vaporwave-overlay"></div>
+    </>
+    }
     </>
   );
 }

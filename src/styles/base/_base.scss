@@ -1,5 +1,6 @@
 @use '../themes/theme' as *;
 @use '../abstracts/variables' as *;
+@use 'styles/abstracts/mixins' as *;
 
 * {
   margin: 0;
@@ -7,6 +8,7 @@
   // border: 1px solid red;
   box-sizing: border-box;
   font-family: "Titillium Web", "M PLUS 1p", sans-serif;;
+
 }
 
 * {
@@ -27,6 +29,7 @@ body {
   width: 100vw;
   height: 100vh;
   // background-color: $global-background;
+  @include aberration();
 }
 
 h2 {
@@ -35,6 +38,7 @@ h2 {
   @media (max-width: $breakpoint-lg) {
     font-size: $font-size-sm;
   }
+
 }
 
 p {
