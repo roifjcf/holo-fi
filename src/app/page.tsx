@@ -12,6 +12,7 @@ import PlayControl from "@/features/playControl/playControl";
 import { PlayMode } from "@/common/type";
 import Loading from "@/components/loading/loading";
 import "./page.scss";
+import Clock from "@/features/clock/clock";
 
 export default function Home() {
   const [tracks, setTracks] = useState<string[] | null>(null); // original order
@@ -197,6 +198,9 @@ export default function Home() {
         />
 
         <AmbientSound sfxList={sfxList}/>
+
+        <Clock />
+
       </div>
       
 

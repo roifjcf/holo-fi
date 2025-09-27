@@ -7,8 +7,9 @@
   padding: 0;
   // border: 1px solid red;
   box-sizing: border-box;
-  font-family: "Titillium Web", "M PLUS 1p", sans-serif;;
-
+  // font-family: "Titillium Web", "M PLUS 1p", sans-serif;
+  font-family: "Sometype Mono", "DotGothic16", monospace;
+  // font-family: "DotGothic16", sans-serif;
 }
 
 * {
@@ -29,6 +30,8 @@ body {
   width: 100vw;
   height: 100vh;
   // background-color: $global-background;
+  color: $white;
+  letter-spacing: 1px;
   @include aberration();
 }
 
@@ -52,6 +55,27 @@ p {
   background-color: #14171c8a;
   border-radius: 8px;
   backdrop-filter: blur(4px);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    mix-blend-mode: screen;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  &::before {
+    transform: translateX(2px);
+    filter: drop-shadow(2px 0 $chromatic-abberation-red);
+  }
+
+  &::after {
+    transform: translateX(-2px);
+    filter: drop-shadow(-2px 0 $chromatic-abberation-cyan);
+  }
 }
 
 .icon-button {

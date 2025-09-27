@@ -3,7 +3,7 @@ import "@/styles/main.scss";
 
 
 export const metadata: Metadata = {
-  title: "holo-fi | Hololive Lo-fi Music Player",
+  title: "holo-fi | Online Hololive Lo-fi Music Player",
   description: "Listen to relaxing lo-fi music produced by Hololive. Stream Hololive lo-fi remixes and chill tracks online.",
   keywords: [
     "Hololive lo-fi",

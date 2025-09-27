@@ -8,8 +8,10 @@ A music player that plays relaxing music produced by Hololive.
   - [react-icons](https://react-icons.github.io/react-icons/)
   - [icons8](https://icons8.com/icons)
 - Fonts
-  - [M PLUS 1p](https://fonts.google.com/specimen/M+PLUS+1p)
-  - [Titillium Web](https://fonts.google.com/specimen/Titillium+Web)
+  - [Sometype Mono](https://fonts.google.com/specimen/Sometype+Mono)
+  - [DotGothic16](https://fonts.google.com/specimen/DotGothic16)
+  <!-- - [M PLUS 1p](https://fonts.google.com/specimen/M+PLUS+1p)
+  - [Titillium Web](https://fonts.google.com/specimen/Titillium+Web) -->
 - Background: [fcjfior](https://x.com/fcjfior)
 - Sound effects: [Pixabay](https://pixabay.com/)
 - Music
