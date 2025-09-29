@@ -20,6 +20,8 @@ A music player that plays relaxing music produced by Hololive.
   - [hololive music studio - jazz mix](https://www.youtube.com/watch?v=WFWw821wozI&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=3)
   - [hololive music studio - bossa nova & jazz mix](https://www.youtube.com/watch?v=VPBqpyub4Kc&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=4)
   - [hololive music studio - lo-fi & chill mix](https://www.youtube.com/watch?v=XD1t7JHbge0&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=5)
+- APIs
+  - [🌤️ Free Open-Source Weather API | Open-Meteo.com](https://open-meteo.com/)
 
 ## Commands
 
