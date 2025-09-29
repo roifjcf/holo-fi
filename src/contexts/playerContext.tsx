@@ -88,7 +88,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   // fetch track list
   useEffect(() => {
     const trackInit = async () => {
-      const response = await fetch("/api/trackinit");
+      const response = await fetch("api/trackinit");
       const data = await response.json();
       setTracks(data.message);
 
