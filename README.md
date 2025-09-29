@@ -28,4 +28,24 @@ npm i
 npm run dev
 ```
 
-<!-- - Sound effects: [ZapSplat](https://www.zapsplat.com/) -->
+## Todos (features)
+
+- Localization
+- Productivity tools
+  - Promodoro
+- Custom cursor (A-chan?)
+- More songs from Hololive production
+  - Filtering options: group, individual, date, region (jp, en, id), type(original / cover / remix)
+  - CDN setup
+- More ambient sfx
+  - Along with corresponding filters!
+- More background images (with variations (e.g. current time, current weather))
+  - Member variation
+- Desktop version (???)
+
+## Community and feedback
+
+- Discord: roifjcf
+- E-mail: roifjcf@gmail.com
+
+(29 Sep 2025 update: I'm not sure if I should create a discord server for this project)
