@@ -9,7 +9,7 @@ export async function GET() {
   const resourcePath = path.join(process.cwd(), 'public/bgm');
   const tracks = fs.readdirSync(resourcePath);
   // return NextResponse.json({ message: 'Hello from Next.js!' });
-  console.log(tracks);
+  // console.log(tracks);
   return NextResponse.json({ message: tracks });
 }
 
