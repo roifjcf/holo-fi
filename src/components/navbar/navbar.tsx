@@ -2,9 +2,14 @@ import { useModal } from "@/hooks/useModal";
 import Icon from "../icon/icon";
 import "./navbar.scss";
 import Modal from "../modal/modal";
+import LanguageDropdown from "./components/languageDropdown";
+import { useState } from "react";
+import { useLanguage } from "@/contexts/languageContext";
 
 export default function Navbar() {
   const { isOpen, openModal, closeModal, toggleModal } = useModal();
+  const [language, setLanguage] = useState("EN");
+  const { translate } = useLanguage();
 
   return (
     <div className="navbar-container">
@@ -14,8 +19,9 @@ export default function Navbar() {
         size="sm"
         onClick={toggleModal}
       />
+      <LanguageDropdown />
       
-      <Modal isOpen={isOpen}>
+      <Modal isOpen={isOpen} onClose={closeModal}>
         <div className="navbar-modal-close-btn" onClick={closeModal}>
           <Icon
             src="img/icons/cancel.png"
@@ -24,11 +30,11 @@ export default function Navbar() {
           />
         </div>
         <div className="navbar-modal-content">
-          <h2>About holo-fi</h2>
-          <p>Holo-fi is a music player that plays chill lofi music produced by Hololive, developed by <a href="https://github.com/roifjcf" target="_blank">roifjcf</a>.</p>
-          <p>This is a fan-made application and is not officially associated with Cover Corp.</p>
-          <p>Enjoy holo-fi? <a href="https://ko-fi.com/fcjfior" target="_blank">Buy me a coffee!</a></p>
-          <p><a href="https://github.com/roifjcf/holo-fi" target="_blank">Source code</a></p>
+          <h2>{translate("about-title")}</h2>
+          <p>{translate("about-content")[0]}</p>
+          <p>{translate("about-content")[1]}</p>
+          <p>{translate("about-content")[2]} <a href="https://ko-fi.com/fcjfior" target="_blank">{translate("about-content")[3]}</a></p>
+          <p><a href="https://github.com/roifjcf/holo-fi" target="_blank">{translate("about-content")[4]}</a></p>
         </div>
 
       </Modal>
