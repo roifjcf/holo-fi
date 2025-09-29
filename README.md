@@ -51,3 +51,7 @@ npm run dev
 - E-mail: roifjcf@gmail.com
 
 (29 Sep 2025 update: I'm not sure if I should create a discord server for this project)
+
+## Contribution
+
+TBD...
