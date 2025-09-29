@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import { PlayerProvider } from "@/contexts/playerContext";
 import "@/styles/main.scss";
-
 
 export const metadata: Metadata = {
   title: "holo-fi | Online Hololive Lo-fi Music Player",
@@ -35,7 +35,9 @@ export default function RootLayout({
         <meta name="google-site-verification" content="2T2_NwItqAKWYw18LZDgFpbZpjMLKb3TDZLF-It4OWg" />
       </head>
       <body>
-        {children}
+        <PlayerProvider>
+          {children}
+        </PlayerProvider>
       </body>
     </html>
   );

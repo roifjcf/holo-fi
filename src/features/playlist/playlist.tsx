@@ -1,31 +1,38 @@
-import { useState } from "react";
+"use client";
+
+import { usePlayer } from "@/contexts/playerContext";
 import "./playlist.scss";
 
 interface Props {
-  playlistElement: React.RefObject<HTMLDivElement>,
-  tracks: string[] | null,
-  handlePlaylistSongClick: (trackNo: number) => void,
-  currentTrack: number | null,
-  handleShowPlayList: () => void,
+  playlistElement: React.RefObject<HTMLDivElement>;
+  handleShowPlayList: () => void;
 }
 
-export default function Playlist({
-  playlistElement,
-  tracks,
-  handlePlaylistSongClick,
-  currentTrack,
-  handleShowPlayList
-}: Props) {
-  
-  
+export default function Playlist({ playlistElement, handleShowPlayList }: Props) {
+  const { tracks, currentTrack, handlePlaylistSongClick } = usePlayer();
 
-  return(
+  if (!tracks) return <div className="playlist-container">Loading playlist...</div>;
+
+  return (
     <div className="playlist-container">
       <div className="playlist-list container-bg" ref={playlistElement}>
-        <img className="icon-button playlist-closebutton" onClick={handleShowPlayList} src="img/icons/left-1.png" alt="left-1" />
-        {tracks?.map((track:any, i:any) =>
-        <p className={`playlist-track ${currentTrack === i ? "playlist-current" : ""}`} key={i} onClick={() => handlePlaylistSongClick(i)}>{track}</p>)}
+        <img
+          className="icon-button playlist-closebutton"
+          onClick={handleShowPlayList}
+          src="img/icons/left-1.png"
+          alt="close playlist"
+        />
+
+        {tracks.map((track, i) => (
+          <p
+            key={i}
+            className={`playlist-track ${currentTrack === i ? "playlist-current" : ""}`}
+            onClick={() => handlePlaylistSongClick(i)}
+          >
+            {track.slice(0, -4)}
+          </p>
+        ))}
       </div>
     </div>
-  )
+  );
 }

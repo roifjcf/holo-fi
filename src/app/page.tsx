@@ -1,119 +1,45 @@
 "use client";
 
-
-
 import { useEffect, useRef, useState } from "react";
-
-
-
 import AmbientSound from "@/features/ambientSound/ambientSound";
 import Playlist from "@/features/playlist/playlist";
 import PlayControl from "@/features/playControl/playControl";
-import { PlayMode } from "@/common/type";
 import Loading from "@/components/loading/loading";
-import "./page.scss";
 import Clock from "@/features/clock/clock";
+import { usePlayer } from "@/contexts/playerContext";
+import "./page.scss";
 
 export default function Home() {
-  const [tracks, setTracks] = useState<string[] | null>(null); // original order
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [currentTrack, setCurrentTrack] = useState<number | null>(null);
-  const [playMode, setPlayMode] = useState<PlayMode>('shuffle');
-  const [volume, setVolume] = useState(1);
-  const [showPlayList, setShowPlaylist] = useState<boolean>(false);
 
-  const bgm = useRef<HTMLAudioElement>(null);
+  const {
+    tracks,
+    currentTrack,
+    isPlaying,
+    handlePlay,
+    handlePause,
+    handleNext,
+    bgmRef,
+    } = usePlayer();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [sfxList, setSfxList] = useState<string[] | null>(null);
+  const [showPlayList, setShowPlaylist] = useState(false);
   const playlistElement = useRef<HTMLDivElement>(null);
 
-  const [sfxList, setSfxList] = useState<string[] | null>(null);
 
-  const handlePlay = () => { if (bgm.current) { bgm.current.play(); setIsPlaying(true); } }
-  const handlePause = () => { if (bgm.current) { bgm.current.pause(); setIsPlaying(false); } }
-
-  const handlePlayPrev = () => {
-      if (bgm.current) {
-        if (playMode === "shuffle") {
-          const randomNumber = Math.floor(Math.random()*tracks!.length);
-          setCurrentTrack(randomNumber);
-        } else {
-          setCurrentTrack(currentTrack => (currentTrack!-1+tracks!.length)%tracks!.length);
-        }
-        setIsPlaying(true);
-      }
-    }
-  
-  const handlePlayNext = () => {
-    if (bgm.current) {
-      if (playMode === "shuffle") {
-        const randomNumber = Math.floor(Math.random()*tracks!.length);
-        setCurrentTrack(randomNumber);
-      } else {
-        setCurrentTrack(currentTrack => currentTrack!+1%tracks!.length);
-      }
-      setIsPlaying(true);
-    }
-  }
-
-
-
-  const handlePlaylistSongClick = (i:number) => {
-    if (bgm.current) {
-      setCurrentTrack(i);
-      setIsPlaying(true);
-    }
-  }
-
-
-
-  const handleEnd = () => {
-    if (bgm.current) {
-      if (playMode === "repeatOne") {
-        bgm.current.currentTime = 0;
-        bgm.current.play();
-        setIsPlaying(true);
-      } else {
-        handlePlayNext();
-      }
-    }
-  }
-
-  const handleVolumeChange = (event:any) => {
-    if (bgm.current) {
-      const newVolume = event.target.value;
-      setVolume(newVolume);
-      bgm.current.volume = newVolume;
-    }
-  }
-
-
-
+  // fetch sfx
   useEffect(() => {
-    // fetch soundtracks and sound effects
-    const trackInit = async () => {
-      console.log("loading tracks...")
-      const response = await fetch('api/trackinit');
-      const data = await response.json();
-      setIsLoading(false);
-      setTracks(data['message']);
-      // setCurrentTrack(0);
-
-      // set random track on start
-      const randomNumber = Math.floor(Math.random()*data['message']!.length);
-      // console.log(randomNumber);
-      setCurrentTrack(randomNumber);
-
-      console.log("loading tracks done!")
-    }
     const sfxInit = async () => {
-      console.log("loading sound effects...")
-      const response = await fetch('api/sfxinit');
+      console.log("loading sound effects...");
+      const response = await fetch("api/sfxinit");
       const data = await response.json();
-      setSfxList(data['message']);
-      console.log("loading sound effects done!")
-    }
-    trackInit();
+      setSfxList(data.message);
+      console.log("loading sound effects done!");
+    };
     sfxInit();
+
+    // tracks were fetch by PlayerProvider
+    setIsLoading(false);
   }, []);
 
 
@@ -126,30 +52,28 @@ export default function Home() {
     }
   }
 
+  // keyboard control
   useEffect(() => {
-    // event listeners for key press
-    const handlePlayByKey = (e:any) => {
-      if (e.key === ' ' && bgm.current) {
+    const handlePlayByKey = (e: KeyboardEvent) => {
+      if (e.key === " " && bgmRef.current) {
         if (isPlaying) {
-          bgm.current.pause();
-          setIsPlaying(false);
+          handlePause();
         } else {
-          bgm.current.play();
-          setIsPlaying(true);
+          handlePlay();
         }
       }
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setShowPlaylist(false);
         if (playlistElement.current) {
           playlistElement.current.style.width = "0%";
         }
       }
     };
-    window.addEventListener('keydown', handlePlayByKey);
+    window.addEventListener("keydown", handlePlayByKey);
     return () => {
-      window.removeEventListener('keydown', handlePlayByKey);
+      window.removeEventListener("keydown", handlePlayByKey);
     };
-  }, [isPlaying]);
+  }, [isPlaying, handlePlay, handlePause]);
 
 
   
@@ -162,58 +86,31 @@ export default function Home() {
     <div className="page retro-screen">
       <h1 className="hidden-text">Hololive Lo-fi Music Player</h1>
 
-      {/* <div className="background">
-        <Image
-          src="/img/background.png"
-          alt="background"
-          fill
-          priority
-          style={{ objectFit: "cover" }}
-        />
-      </div> */}
-
       <div className="content">
         <Playlist
           playlistElement={playlistElement}
-          tracks={tracks}
-          handlePlaylistSongClick={handlePlaylistSongClick}
-          currentTrack={currentTrack}
           handleShowPlayList={handleShowPlayList}
         />
-
-
         <PlayControl
-          tracks={tracks}
-          currentTrack={currentTrack}
-          isPlaying={isPlaying}
-          setPlayMode={setPlayMode}
-          volume={volume}
-          handleVolumeChange={handleVolumeChange}
-          handlePlay={handlePlay}
-          handlePlayPrev={handlePlayPrev}
-          handlePause={handlePause}
-          handlePlayNext={handlePlayNext}
-          playMode={playMode}
           handleShowPlayList={handleShowPlayList}
         />
-
         <AmbientSound sfxList={sfxList}/>
-
         <Clock />
-
       </div>
       
 
       {/* other stuff */}
       <audio
-        ref={bgm}
-        src={`bgm/${tracks![currentTrack!]}`}
-        onEnded={handleEnd}
+        ref={bgmRef}
+        src={tracks && currentTrack !== null ? `bgm/${tracks[currentTrack]}` : undefined}
         autoPlay
         preload="none"
+        onEnded={handleNext}
       />
     </div>
+
     <div className="vaporwave-overlay"></div>
+
     {/* <div className="particles-overlay">
       {Array.from({ length: 50 }).map((_, i) => (
         <div
