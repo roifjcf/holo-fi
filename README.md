@@ -5,8 +5,7 @@ A music player that plays relaxing music produced by Hololive.
 ## Credits
 
 - Icons
-  - [react-icons](https://react-icons.github.io/react-icons/)
-  - [icons8](https://icons8.com/icons)
+  - [Material Symbols & Icons - Google Fonts](https://fonts.google.com/icons)
 - Fonts
   - [Sometype Mono](https://fonts.google.com/specimen/Sometype+Mono)
   - [DotGothic16](https://fonts.google.com/specimen/DotGothic16)

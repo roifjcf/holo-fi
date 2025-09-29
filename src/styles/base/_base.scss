@@ -41,13 +41,20 @@ h2 {
   @media (max-width: $breakpoint-lg) {
     font-size: $font-size-sm;
   }
-
 }
 
 p {
   font-size: $font-size-base;
   @media (max-width: $breakpoint-lg) {
     font-size: $font-size-sm;
+  }
+}
+
+a {
+  color: $blue;
+  @include aberration-weak();
+  &:hover {
+    color: $white;
   }
 }
 

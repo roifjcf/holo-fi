@@ -8,6 +8,7 @@ import Loading from "@/components/loading/loading";
 import Clock from "@/features/clock/clock";
 import { usePlayer } from "@/contexts/playerContext";
 import "./page.scss";
+import Navbar from "@/components/navbar/navbar";
 
 export default function Home() {
 
@@ -96,6 +97,7 @@ export default function Home() {
         />
         <AmbientSound sfxList={sfxList}/>
         <Clock />
+        <Navbar />
       </div>
       
 
