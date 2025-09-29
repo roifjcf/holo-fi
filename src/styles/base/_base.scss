@@ -55,6 +55,7 @@ p {
   background-color: #14171c8a;
   border-radius: 8px;
   backdrop-filter: blur(4px);
+  overflow-x: hidden;
 
   &::before,
   &::after {
