@@ -3,11 +3,7 @@
 
 .playcontrol-container {
   padding: $space-4;
-  @media (max-width: $breakpoint-md) {
-    position: absolute;
-    bottom: 0; right: 50%;
-    transform: translate(50%,0%);
-  }
+  
 }
 
 .playcontrol-music-title {

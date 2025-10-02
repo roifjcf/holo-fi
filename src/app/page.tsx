@@ -9,6 +9,7 @@ import Clock from "@/features/clock/clock";
 import { usePlayer } from "@/contexts/playerContext";
 import "./page.scss";
 import Navbar from "@/components/navbar/navbar";
+import Pomodoro from "@/features/pomodoro/pomodoro";
 
 export default function Home() {
 
@@ -34,7 +35,7 @@ export default function Home() {
       console.log("loading sound effects...");
       const response = await fetch("api/sfxinit");
       const data = await response.json();
-      setSfxList(data.message);
+      setSfxList(data.message.filter((fileName: string) => fileName !== "bell-notification-337658.mp3" && fileName !== "winner-bell-game-show-91932.mp3"));
       console.log("loading sound effects done!");
     };
     sfxInit();
@@ -88,14 +89,24 @@ export default function Home() {
       <h1 className="hidden-text">Hololive Lo-fi Music Player</h1>
 
       <div className="content">
-        <Playlist
-          playlistElement={playlistElement}
-          handleShowPlayList={handleShowPlayList}
-        />
-        <PlayControl
-          handleShowPlayList={handleShowPlayList}
-        />
-        <AmbientSound sfxList={sfxList}/>
+        <div className="left">
+          <Playlist
+            playlistElement={playlistElement}
+            handleShowPlayList={handleShowPlayList}
+          />
+        </div>
+
+        <div className="mid">
+          <Pomodoro />
+          <PlayControl
+            handleShowPlayList={handleShowPlayList}
+          />
+        </div>
+
+        <div className="right">
+          <AmbientSound sfxList={sfxList}/>
+        </div>
+        
         <Clock />
         <Navbar />
       </div>
