@@ -3,6 +3,7 @@
 import { usePlayer } from "@/contexts/playerContext";
 import { PlayMode } from "@/common/type";
 import './playcontrol.scss';
+import Icon from "@/components/icon/icon";
 
 interface Props {
   handleShowPlayList: () => void,
@@ -43,48 +44,17 @@ export default function PlayControl({
 
     <div className="playcontrol-buttons">
         <div className="left">
-          <img
-            className="icon-button"
-            onClick={handlePrev}
-            src="img/icons/left.png"
-            alt="prev"
-          />
-          {isPlaying ? (
-            <img
-              className="icon-button"
-              onClick={handlePause}
-              src="img/icons/pause.png"
-              alt="pause"
-            />
-          ) : (
-            <img
-              className="icon-button"
-              onClick={handlePlay}
-              src="img/icons/play.png"
-              alt="play"
-            />
-          )}
-          <img
-            className="icon-button"
-            onClick={handleNext}
-            src="img/icons/right.png"
-            alt="next"
-          />
+          <Icon src="img/icons/left.png" alt="prev" onClick={handlePrev} />
+          {isPlaying ?
+            <Icon src="img/icons/pause.png" alt="pause" onClick={handlePause} /> :
+            <Icon src="img/icons/play.png" alt="play" onClick={handlePlay} />
+          }
+          <Icon src="img/icons/right.png" alt="next" onClick={handleNext} />
         </div>
 
         <div className="right">
-          <img
-            className="icon-button"
-            onClick={() => setPlayMode(nextPlayMode())}
-            src={`img/icons/${playMode}.png`}
-            alt={playMode}
-          />
-          <img
-            className="icon-button"
-            onClick={handleShowPlayList}
-            src="img/icons/music-list.png"
-            alt="music-list"
-          />
+          <Icon src={`img/icons/${playMode}.png`} alt={playMode} onClick={() => setPlayMode(nextPlayMode())} />
+          <Icon src="img/icons/music-list.png" alt="music-list" onClick={handleShowPlayList} />
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 import { AiOutlineSound, AiFillSound } from "react-icons/ai";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./sfxunit.scss";
+import Icon from "@/components/icon/icon";
 interface Props {
   name: string,
   key: number,
@@ -13,10 +14,16 @@ export default function sfxUnit({
 }: Props) {
   const sfx = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(0.25);
 
   // const sfxShadow = useRef<HTMLAudioElement>(null); // to achieve seamless effect
   const [timeoutInfo, setTimeoutInfo] = useState<ReturnType<typeof setTimeout> | null>(null); // for sfxShadow
+
+  useEffect(()=> {
+    if (sfx.current) {
+      sfx.current.volume = volume;
+    }
+  }, []);
 
   const handleVolumeChange = (event:any) => {
     if (sfx.current) {
@@ -56,12 +63,11 @@ export default function sfxUnit({
     
   return(
     <div className="sfxunit-container">
-      <img 
-        className={`icon-button${isPlaying ? ' playing' : ''}`}
-        onClick={togglePlay}
+      <Icon
         src={`img/sfxicons/${name.slice(0, -4)}.png`}
         alt={`${name}.png`}
-        draggable={false}
+        onClick={togglePlay}
+        className={`icon-button${isPlaying ? ' playing' : ''}`}
       />
 
       <input
