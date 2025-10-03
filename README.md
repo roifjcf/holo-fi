@@ -2,7 +2,7 @@
 
 A music player that plays relaxing music produced by Hololive.
 
-## Credits
+## Credits / References
 
 - Icons
   - [Material Symbols & Icons - Google Fonts](https://fonts.google.com/icons)
@@ -15,6 +15,7 @@ A music player that plays relaxing music produced by Hololive.
 - Background: [fcjfior](https://x.com/fcjfior)
 - Sound effects: [Pixabay](https://pixabay.com/)
 - Music
+  - [オリジナルソング - ホロライブ非公式wiki](https://seesaawiki.jp/hololivetv/d/%A5%AA%A5%EA%A5%B8%A5%CA%A5%EB%A5%BD%A5%F3%A5%B0#content_3_8)
   - [hololive music studio - lo-fi & chill mix II [#hololivemusicstudio]](https://www.youtube.com/watch?v=cBlrARl9tIQ&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv)
   - [hololive music studio - ambient & orgel mix [#hololivemusicstudio]](https://www.youtube.com/watch?v=899x5rU9mX8&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=2)
   - [hololive music studio - jazz mix](https://www.youtube.com/watch?v=WFWw821wozI&list=PL1NeGg1woXqnC8Rh_M0oO0QashTHocZqv&index=3)
