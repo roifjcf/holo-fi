@@ -81,8 +81,8 @@ export default function Pomodoro({
         }
         <Icon size="sm" src="img/icons/replay.png" alt="reset button" onClick={resetTimer}/>
       </div>
-      <audio ref={startSoundRef} src="/sfx/winner-bell-game-show-91932.mp3" preload="auto" />
-      <audio ref={endSoundRef} src="/sfx/bell-notification-337658.mp3" preload="auto" />
+      <audio ref={startSoundRef} src="sfx/winner-bell-game-show-91932.mp3" preload="auto" />
+      <audio ref={endSoundRef} src="sfx/bell-notification-337658.mp3" preload="auto" />
     </div>
   );
 
