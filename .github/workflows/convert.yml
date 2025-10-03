@@ -23,7 +23,7 @@ jobs:
         run: npm install csv-parse
 
       - name: Run convert script
-        run: node scripts/convert.js
+        run: node src/scripts/convert.js
 
       - name: Commit and push JSON
         run: |
