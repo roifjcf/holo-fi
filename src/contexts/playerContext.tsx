@@ -1,10 +1,10 @@
 'use client';
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
-import { PlayMode } from "@/common/type";
+import { PlayMode, trackInterface } from "@/common/type";
 
 type PlayerContextType = {
   // states
-  tracks: string[] | null;
+  tracks: trackInterface[] | null;
   currentTrack: number | null;
   isPlaying: boolean;
   playMode: PlayMode;
@@ -19,6 +19,8 @@ type PlayerContextType = {
   handlePlaylistSongClick: (i: number) => void;
   setPlayMode: (mode: PlayMode) => void;
   setVolume: (v: number) => void;
+  handlePlayRemix: () => void;
+  handlePlayOriginalEN: () => void;
 };
 
 
@@ -34,9 +36,13 @@ export function usePlayer() {
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
 
-  const [tracks, setTracks] = useState<string[] | null>(null); // original order
+  const [tracks, setTracks] = useState<trackInterface[] | null>(null); // original order, all selected tracks
+  const [tracksRemix, setTracksRemix] = useState<trackInterface[] | null>(null);
+  const [tracksOriginalEN, setTracksOriginalEN] = useState<trackInterface[] | null>(null);
+  const [tracksOriginalJP, setTracksOriginalJP] = useState<trackInterface[] | null>(null);
+  const [tracksOriginalID, setTracksOriginalID] = useState<trackInterface[] | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTrack, setCurrentTrack] = useState<number | null>(null);
+  const [currentTrack, setCurrentTrack] = useState<number | null>(null); // track number
   const [playMode, setPlayMode] = useState<PlayMode>("shuffle");
   const [volume, setVolume] = useState(1);
 
@@ -84,16 +90,26 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   };
 
 
+  const handlePlayRemix = () => {
+    setTracks(tracksRemix);
+    setCurrentTrack(0);
+  }
+  const handlePlayOriginalEN = () => {
+    setTracks(tracksOriginalEN);
+    setCurrentTrack(0);
+  }
+
 
   // fetch track list
   useEffect(() => {
     const trackInit = async () => {
       const response = await fetch("api/trackinit");
       const data = await response.json();
-      setTracks(data.message);
-
+      setTracks(data.remix);
+      setTracksRemix(data.remix);
+      setTracksOriginalEN(data.originalEn);
       // random songs
-      const randomNumber = Math.floor(Math.random() * data.message.length);
+      const randomNumber = Math.floor(Math.random() * data.remix.length);
       setCurrentTrack(randomNumber);
     };
     trackInit();
@@ -126,6 +142,8 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         setPlayMode,
         setVolume,
         bgmRef,
+        handlePlayRemix,
+        handlePlayOriginalEN
       }}
     >
       {children}

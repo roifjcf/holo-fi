@@ -50,6 +50,12 @@ p {
   }
 }
 
+li {
+  @media (max-width: $breakpoint-lg) {
+    font-size: $font-size-sm;
+  }
+}
+
 a {
   color: $blue;
   @include aberration-weak();
@@ -57,6 +63,43 @@ a {
     color: $white;
   }
 }
+
+button {
+  padding: $space-1;
+
+  border: 1px solid $white;
+  border-radius: $radius-sm;
+  color: white;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  
+  @include aberration();
+  @include aberration-border();
+
+  &:hover {
+    cursor: pointer;
+    background-color: $white-transparent;
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .container-bg {
   background-color: #14171c8a;

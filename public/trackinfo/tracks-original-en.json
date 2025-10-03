@@ -1,0 +1,39 @@
+[
+  {
+    "name": "VIOLET",
+    "url": "https://raw.githubusercontent.com/fcjfior/holo-fi-cdn-original-en/main/bgm/VIOLET%20-%20Ninomae%20Ina'nis.mp3",
+    "source": "https://www.youtube.com/watch?v=8ZdLXELdF9Q",
+    "vtubers": [
+      "Ninomae Ina'nis"
+    ],
+    "release": "20210806"
+  },
+  {
+    "name": "MECONOPSIS",
+    "url": "https://raw.githubusercontent.com/fcjfior/holo-fi-cdn-original-en/main/bgm/MECONOPSIS%20-%20Ninomae%20Ina'nis.mp3",
+    "source": "https://www.youtube.com/watch?v=XzkNg89Cq9Y",
+    "vtubers": [
+      "Ninomae Ina'nis"
+    ],
+    "release": "20240522"
+  },
+  {
+    "name": "TEMARI",
+    "url": "https://raw.githubusercontent.com/fcjfior/holo-fi-cdn-original-en/main/bgm/TEMARI%20-%20Ninomae%20Ina'nis.mp3",
+    "source": "https://www.youtube.com/watch?v=LtTO1HMGjqA",
+    "vtubers": [
+      "Ninomae Ina'nis"
+    ],
+    "release": "20241229"
+  },
+  {
+    "name": "Kurukuru Cruise",
+    "url": "https://raw.githubusercontent.com/fcjfior/holo-fi-cdn-original-en/main/bgm/MythmashKurukuru%20Cruise%20-%20Ninomae%20Ina'nis%20x%20Nekomata%20Okayu.mp3",
+    "source": "https://www.youtube.com/watch?v=t7lNu-p_ANs",
+    "vtubers": [
+      "Ninomae Ina'nis",
+      "Nekomata Okayu"
+    ],
+    "release": "20250804"
+  }
+]

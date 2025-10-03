@@ -4,6 +4,7 @@ import { usePlayer } from "@/contexts/playerContext";
 import { PlayMode } from "@/common/type";
 import './playcontrol.scss';
 import Icon from "@/components/icon/icon";
+import { useEffect } from "react";
 
 interface Props {
   handleShowPlayList: () => void,
@@ -14,6 +15,7 @@ interface Props {
 export default function PlayControl({
   handleShowPlayList
 }: Props) {
+
   const {
     tracks,
     currentTrack,
@@ -29,18 +31,40 @@ export default function PlayControl({
   } = usePlayer();
 
   
-    const nextPlayMode = (): PlayMode => {
-      if (playMode === "repeatOne") return "playAll";
-      if (playMode === "playAll") return "shuffle";
-      return "repeatOne";
-    };
+  const nextPlayMode = (): PlayMode => {
+    if (playMode === "repeatOne") return "playAll";
+    if (playMode === "playAll") return "shuffle";
+    return "repeatOne";
+  };
+
+  const renderTalents = () => {
+    if (!tracks || currentTrack == null) return null;
+    const track = tracks[currentTrack];
+    const talentstr = track.vtubers?.join(", ");
+    if (!track || !track.vtubers || track.vtubers.length === 0) return null;
+
+    return (
+      <p>{talentstr}</p>
+    );
+  };
 
   return (
   <div className="playcontrol-container container-bg">
 
-    <h2 className="playcontrol-music-title">
-      {tracks?.[currentTrack ?? 0]?.slice(0, -4) ?? "Loading..."}
-    </h2>
+    <div className="playcontrol-info-container">
+      <div className="playcontrol-info-container--title">
+        <h2>
+          {tracks?.[currentTrack ?? 0]?.name ?? "Loading..."}
+        </h2>
+        {tracks?.[currentTrack ?? 0]?.source && 
+        <a href={tracks?.[currentTrack ?? 0]?.source} target="_blank">
+          <Icon src="img/icons/youtube.png" alt="source" size="sm" />
+        </a> }
+      </div>
+      <div className="playcontrol-info-container--talents">
+        {renderTalents()}
+      </div>
+    </div>
 
     <div className="playcontrol-buttons">
         <div className="left">

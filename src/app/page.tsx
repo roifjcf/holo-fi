@@ -44,8 +44,6 @@ export default function Home() {
     setIsLoading(false);
   }, []);
 
-
-
   const handleShowPlayList = () => {
     setShowPlaylist(!showPlayList);
     if (playlistElement.current) {
@@ -115,7 +113,7 @@ export default function Home() {
       {/* other stuff */}
       <audio
         ref={bgmRef}
-        src={tracks && currentTrack !== null ? `bgm/${tracks[currentTrack]}` : undefined}
+        src={tracks && currentTrack !== null ? `${tracks[currentTrack].url}` : undefined}
         autoPlay
         preload="none"
         onEnded={handleNext}

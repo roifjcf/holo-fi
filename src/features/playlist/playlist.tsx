@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Playlist({ playlistElement, handleShowPlayList }: Props) {
-  const { tracks, currentTrack, handlePlaylistSongClick } = usePlayer();
+  const { tracks, currentTrack, handlePlaylistSongClick, handlePlayRemix, handlePlayOriginalEN } = usePlayer();
 
   if (!tracks) return <div className="playlist-container">Loading playlist...</div>;
 
@@ -23,13 +23,18 @@ export default function Playlist({ playlistElement, handleShowPlayList }: Props)
           alt="close playlist"
         />
 
+        <div className="playlist-buttons">
+          <button onClick={handlePlayRemix}>Remix</button>
+          <button onClick={handlePlayOriginalEN}>Original</button>
+        </div>
+        
         {tracks.map((track, i) => (
           <p
             key={i}
             className={`playlist-track ${currentTrack === i ? "playlist-current" : ""}`}
             onClick={() => handlePlaylistSongClick(i)}
           >
-            {track.slice(0, -4)}
+            {track.name}
           </p>
         ))}
       </div>

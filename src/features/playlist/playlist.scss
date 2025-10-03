@@ -28,12 +28,12 @@
   padding: $space-1 $space-2;
   &:hover {
     cursor: pointer;
-    background-color: rgba($white, 0.2);
+    background-color: $white-transparent;
   }
 }
 
 .playlist-current {
-  background-color: rgba($white, 0.2);
+  background-color: $white-transparent;
 }
 
 
@@ -44,4 +44,11 @@
   @media (min-width: $breakpoint-md) {
     display: none;
   }
+}
+
+.playlist-buttons {
+  display: flex;
+  gap: $space-2;
+  padding: $space-1 $space-2;
+  margin: $space-2 0;
 }

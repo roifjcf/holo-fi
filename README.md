@@ -6,6 +6,7 @@ A music player that plays relaxing music produced by Hololive.
 
 - Icons
   - [Material Symbols & Icons - Google Fonts](https://fonts.google.com/icons)
+  - [Flaticon](https://www.flaticon.com/)
 - Fonts
   - [Sometype Mono](https://fonts.google.com/specimen/Sometype+Mono)
   - [DotGothic16](https://fonts.google.com/specimen/DotGothic16)

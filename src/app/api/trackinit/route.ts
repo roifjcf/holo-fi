@@ -6,11 +6,29 @@ import path from 'path';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const resourcePath = path.join(process.cwd(), 'public/bgm');
-  const tracks = fs.readdirSync(resourcePath);
+  // remix
+  let jsonPath = path.join(process.cwd(), 'public/trackinfo/tracks-remix.json');
+  let tracksRemix = [];
+  try {
+    const rawData = fs.readFileSync(jsonPath, 'utf-8');
+    tracksRemix = JSON.parse(rawData);
+  } catch (error) {
+    console.error("Failed to read bgm.json:", error);
+  }
+
+  // CDN
+  jsonPath = path.join(process.cwd(), 'public/trackinfo/tracks-original-en.json');
+  let tracksOriginalEn = [];
+  try {
+    const rawData = fs.readFileSync(jsonPath, 'utf-8');
+    tracksOriginalEn = JSON.parse(rawData);
+  } catch (error) {
+    console.error("Failed to read bgm.json:", error);
+  }
+
   // return NextResponse.json({ message: 'Hello from Next.js!' });
-  // console.log(tracks);
-  return NextResponse.json({ message: tracks });
+  // console.log(tracksRemix);
+  return NextResponse.json({ remix: tracksRemix, originalEn: tracksOriginalEn });
 }
 
 // export default function handler(
@@ -18,6 +36,6 @@ export async function GET() {
 //   res: NextApiResponse<ResponseData>
 // ) {
 //   // const resourcePath = path.join(process.cwd(), 'public/bgm');
-//   // const tracks = fs.readdirSync(resourcePath);
+//   // const tracksRemix = fs.readdirSync(resourcePath);
 //   res.status(200).json({ message: 'Hello from Next.js!' })
 // }
