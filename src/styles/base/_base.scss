@@ -118,15 +118,15 @@ button {
     pointer-events: none;
   }
 
-  &::before {
-    transform: translateX(2px);
-    filter: drop-shadow(2px 0 $chromatic-abberation-red);
-  }
+  // &::before {
+  //   transform: translateX(2px);
+  //   filter: drop-shadow(2px 0 $chromatic-abberation-red);
+  // }
 
-  &::after {
-    transform: translateX(-2px);
-    filter: drop-shadow(-2px 0 $chromatic-abberation-cyan);
-  }
+  // &::after {
+  //   transform: translateX(-2px);
+  //   filter: drop-shadow(-2px 0 $chromatic-abberation-cyan);
+  // }
 }
 
 .icon-button {
