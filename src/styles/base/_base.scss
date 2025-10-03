@@ -107,16 +107,16 @@ button {
   backdrop-filter: blur(4px);
   overflow-x: hidden;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: inherit;
-    mix-blend-mode: screen;
-    opacity: 0.2;
-    pointer-events: none;
-  }
+  // &::before,
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   inset: 0;
+  //   background: inherit;
+  //   mix-blend-mode: screen;
+  //   opacity: 0.2;
+  //   pointer-events: none;
+  // }
 
   // &::before {
   //   transform: translateX(2px);
