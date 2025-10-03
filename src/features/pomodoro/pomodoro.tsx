@@ -76,10 +76,10 @@ export default function Pomodoro({
       <p className="pomodoro-timer">{formatTime(timeLeft)}</p>
       <div className="pomodoro-controls">
         {isRunning ?
-        <Icon size="sm" src="/img/icons/pause.png" alt="pause button" onClick={toggleStartPause} /> :
-        <Icon size="sm" src="/img/icons/play.png" alt="start button" onClick={toggleStartPause} />
+        <Icon size="sm" src="img/icons/pause.png" alt="pause button" onClick={toggleStartPause} /> :
+        <Icon size="sm" src="img/icons/play.png" alt="start button" onClick={toggleStartPause} />
         }
-        <Icon size="sm" src="/img/icons/replay.png" alt="reset button" onClick={resetTimer}/>
+        <Icon size="sm" src="img/icons/replay.png" alt="reset button" onClick={resetTimer}/>
       </div>
       <audio ref={startSoundRef} src="/sfx/winner-bell-game-show-91932.mp3" preload="auto" />
       <audio ref={endSoundRef} src="/sfx/bell-notification-337658.mp3" preload="auto" />
