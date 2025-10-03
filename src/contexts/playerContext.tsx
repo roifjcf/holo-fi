@@ -91,12 +91,22 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
 
 
   const handlePlayRemix = () => {
+    if (!tracksRemix) return;
     setTracks(tracksRemix);
-    setCurrentTrack(0);
+    if (playMode === "shuffle") {
+      setCurrentTrack(Math.floor(Math.random() * tracksRemix.length));
+    } else {
+      setCurrentTrack(0);
+    }
   }
   const handlePlayOriginalEN = () => {
+    if (!tracksOriginalEN) return;
     setTracks(tracksOriginalEN);
-    setCurrentTrack(0);
+    if (playMode === "shuffle") {
+      setCurrentTrack(Math.floor(Math.random() * tracksOriginalEN.length));
+    } else {
+      setCurrentTrack(0);
+    }
   }
 
 
