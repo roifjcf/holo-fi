@@ -11,7 +11,7 @@ interface LanguageContextType {
   lang: Language;
   setLang: (lang: Language) => void;
   t: typeof en;
-  translate: (key: string) => string | string[]; // translation fallback
+  translate: (key: string, subKey?: string | number) => string; // translation fallback
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -19,10 +19,15 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Language>("EN");
 
-  const translate = (key: string) => {
+  const translate = (key: string, subKey?: string | number) => {
     const current = translationsMap[lang] as Record<string, any>;
-    if (key in current) return current[key];
-    return en[key as keyof typeof en] ?? key; // fallback
+    const value = key in current ? current[key] : en[key as keyof typeof en] ?? key;
+
+    if (subKey != null && typeof value === "object") {
+      return value[subKey] ?? key;
+    }
+
+    return value;
   };
 
   return (

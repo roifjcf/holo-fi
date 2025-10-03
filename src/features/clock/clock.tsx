@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { useWeather } from "@/hooks/useWeather";
 import "./clock.scss";
 import { useTime } from "@/hooks/useTime";
+import { useLanguage } from "@/contexts/languageContext";
 
 export default function Clock() {
   
   const { currTime, currDate, currDay } = useTime();  
   const { weather, loadingWeather, error } = useWeather();
+
+  const { translate } = useLanguage();
 
   
 
@@ -19,7 +22,7 @@ export default function Clock() {
       <p>Loading weather...</p> :
       error ?
       <></> :
-      <p>{weather?.description} {weather?.temperature}°C</p> }
+      <p>{translate("weather", weather?.weathercode)} {weather?.temperature}°C</p> }
     </div>
   </>;
 }

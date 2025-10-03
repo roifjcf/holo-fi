@@ -32,7 +32,7 @@ npm run dev
 
 ## Todos (features)
 
-- Localization
+- i18n
 - Productivity tools
   - Promodoro
 - Custom cursor (A-chan?)
